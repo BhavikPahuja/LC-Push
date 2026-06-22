@@ -6,7 +6,7 @@ class Solution {
             Arrays.fill(dist[i], (int) 1e9);
         }
         dist[0][0] = 0;
-        Queue<int[]> q = new LinkedList<>();
+        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> Integer.compare(a[2], b[2]));
         q.offer(new int[]{0, 0, 0});
         while(!q.isEmpty()) {
             int curr[] = q.poll();

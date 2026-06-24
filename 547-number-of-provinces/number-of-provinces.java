@@ -49,11 +49,13 @@ class Solution {
             }
         }
 
-        Set<Integer> count = new HashSet<>();
+        int count = 0;
         for (int i=0; i<n; i++) {
-            count.add(ds.findParent(i));
+            if (ds.findParent(i) == i) {
+                count++;
+            }
         }
 
-        return count.size();
+        return count;
     }
 }

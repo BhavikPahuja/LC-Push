@@ -2,12 +2,12 @@ class Solution {
     public long sumAndMultiply(int n) {
         
 
-        long num = 0;
-        long temp = n;
-        long sum = 0;
+        int num = 0;
+        int temp = n;
+        int sum = 0;
 
         while (temp > 0) {
-            long x = temp % 10;
+            int x = temp % 10;
             temp /= 10;
 
             if (x != 0) {
@@ -17,13 +17,13 @@ class Solution {
             }
         }
 
-        long ans = 0;
+        int ans = 0;
         while (num > 0) {
 
             ans = ans * 10 + num % 10;
             num /= 10;
         }
 
-        return ans * sum;
+        return 1L * ans * sum;
     }
 }

@@ -32,6 +32,7 @@ class Solution {
             j++;
         }
 
+        System.gc();
         return false;
     }
 }

@@ -6,15 +6,14 @@ class Solution {
 
         int n = nums.length;
 
-        for (int x=0; x<Math.min(k + 1, n); x++) {
+        for (j=0; j<Math.min(k + 1, n); j++) {
 
-            if (seen.contains(nums[x])) {
+            if (seen.contains(nums[j])) {
 
                 return true;
             }
 
-            seen.add(nums[x]);
-            j++;
+            seen.add(nums[j]);
         }
 
         while (j < n) {
@@ -32,7 +31,6 @@ class Solution {
             j++;
         }
 
-        System.gc();
         return false;
     }
 }

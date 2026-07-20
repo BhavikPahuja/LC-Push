@@ -19,28 +19,24 @@ class MyQueue {
     
     public void push(int x) {
         
+        transfer(s2, s1);
         s1.push(x);
+        transfer(s1, s2);
     }
     
     public int pop() {
         
-        transfer(s1, s2);
-        int val = s2.pop();
-        transfer(s2, s1);
-        return val;
+        return s2.pop();
     }
     
     public int peek() {
         
-        transfer(s1, s2);
-        int val = s2.peek();
-        transfer(s2, s1);
-        return val;
+        return s2.peek();
     }
     
     public boolean empty() {
         
-        return s1.isEmpty();
+        return s2.isEmpty();
     }
 }
 

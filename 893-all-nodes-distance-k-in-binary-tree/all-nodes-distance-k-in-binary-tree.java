@@ -35,6 +35,7 @@ class Solution {
 
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(target);
+        vis.add(target);
 
         for (int i=0; i<k; i++) {
 
@@ -43,21 +44,23 @@ class Solution {
             for (int j=0; j<len; j++) {
 
                 TreeNode curr = q.poll();
-                vis.add(curr);
 
                 if (curr.left != null && !vis.contains(curr.left)) {
 
                     q.offer(curr.left);
+                    vis.add(curr.left);
                 }
 
                 if (curr.right != null && !vis.contains(curr.right)) {
 
                     q.offer(curr.right);
+                    vis.add(curr.right);
                 }
 
                 if (mpp.get(curr) != null && !vis.contains(mpp.get(curr))) {
 
                     q.offer(mpp.get(curr));
+                    vis.add(mpp.get(curr));
                 }
             }
         }

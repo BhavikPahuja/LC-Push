@@ -9,35 +9,31 @@
  */
 class Solution {
 
-    TreeNode dfs(TreeNode node, TreeNode p, TreeNode q) {
+    TreeNode ans = null;
 
-        if (node == null) {
+    boolean rec(TreeNode curr, TreeNode p, TreeNode q) {
 
-            return null;
+        if (curr == null) {
+
+            return false;
         }
 
-        if (node == p || node == q) {
-            
-            return node;
+        boolean left = rec(curr.left, p, q);
+        boolean right = rec(curr.right, p, q);
+        boolean self = (curr == p) || (curr == q);
+
+        if ((left && right) || (left && self) || (self && right)) {
+
+            ans = curr;
         }
 
-        TreeNode left = dfs(node.left, p, q);
-        TreeNode right = dfs(node.right, p, q);
-
-        if (left == null) {
-
-            return right;
-        } else if (right == null) {
-
-            return left;
-        } else {
-
-            return node;
-        }
+        return left || self || right;
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         
-        return dfs(root, p, q);
+        rec(root, p, q);
+
+        return ans;
     }
 }

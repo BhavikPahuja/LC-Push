@@ -1,43 +1,62 @@
+class DSU {
+
+    int parent[];
+    int size[];
+
+    DSU(int n) {
+
+        parent = new int[n + 1];
+        size = new int[n + 1];
+
+        for (int i=0; i<=n; i++) {
+
+            parent[i] = i;
+            size[i] = 1;
+        }
+    }
+
+    int findParent(int node) {
+
+        if (parent[node] == node) {
+
+            return node;
+        }
+
+        return parent[node] = findParent(parent[node]);
+    }
+
+    void unionBySize(int u, int v) {
+
+        int parent_u = findParent(u);
+        int parent_v = findParent(v);
+
+        if (parent_u == parent_v) {
+
+            return;
+        }
+
+        if (size[parent_u] < size[parent_v]) {
+
+            parent[parent_u] = parent_v;
+            size[parent_v] += size[parent_u];
+        } else {
+            
+            parent[parent_v] = parent_u;
+            size[parent_u] += size[parent_v];
+        }
+    }
+}
+
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
         
-        List<List<Integer>> adj = new ArrayList<>();
-        for (int i=0; i<n; i++) {
-
-            adj.add(new ArrayList<>());
-        }
+        DSU dsu = new DSU(n);
 
         for (int edge[] : edges) {
 
-            adj.get(edge[0]).add(edge[1]);
-            adj.get(edge[1]).add(edge[0]);
+            dsu.unionBySize(edge[0], edge[1]);
         }
 
-        boolean vis[] = new boolean[n];
-        vis[source] = true;
-
-        Queue<Integer> q = new LinkedList<>();
-        q.offer(source);
-
-        while (!q.isEmpty()) {
-
-            int curr = q.poll();
-
-            if (curr == destination) {
-
-                return true;
-            }
-
-            for (int nei : adj.get(curr)) {
-
-                if (!vis[nei]) {
-
-                    q.offer(nei);
-                    vis[nei] = true;
-                }
-            }
-        }
-
-        return false;
+        return dsu.findParent(source) == dsu.findParent(destination);
     }
 }

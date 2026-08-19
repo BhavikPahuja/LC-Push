@@ -11,23 +11,9 @@ class Solution {
 
         for (Set<Integer> i : map.values()) {
 
-            boolean left =
-                !i.contains(2) &&
-                !i.contains(3) &&
-                !i.contains(4) &&
-                !i.contains(5);
-
-            boolean middle =
-                !i.contains(4) &&
-                !i.contains(5) &&
-                !i.contains(6) &&
-                !i.contains(7);
-
-            boolean right =
-                !i.contains(6) &&
-                !i.contains(7) &&
-                !i.contains(8) &&
-                !i.contains(9);
+            boolean left = !i.contains(2) && !i.contains(3) && !i.contains(4) && !i.contains(5);
+            boolean middle = !i.contains(4) && !i.contains(5) && !i.contains(6) && !i.contains(7);
+            boolean right = !i.contains(6) && !i.contains(7) && !i.contains(8) && !i.contains(9);
 
             res -= 2;
 

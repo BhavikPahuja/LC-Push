@@ -1,22 +1,19 @@
 class Solution {
 
     public int missingMultiple(int[] nums, int k) {
-
+    
         Set<Integer> seen = new HashSet<>();
-
         for (int i : nums) {
 
             seen.add(i);
         }
 
-        for (int i=1; i<=101; i++) {
-
-            if (!seen.contains(i * k)) {
-
-                return i * k;
+        for(int i=k; ; i+=k){
+    
+            if(!seen.contains(i)){
+    
+                return i;
             }
         }
-
-        return -1;
     }
 }

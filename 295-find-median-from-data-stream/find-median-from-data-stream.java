@@ -12,17 +12,17 @@ class MedianFinder {
     public void addNum(int num) {
 
         if (pq1.isEmpty() || num >= pq1.peek()) { 
+            
             pq1.offer(num); 
         } else { 
+            
             pq2.offer(num); 
         }
 
-        while (pq1.size() > pq2.size() + 1) {
+        if (pq1.size() > pq2.size() + 1) {
 
             pq2.offer(pq1.poll());
-        }
-
-        while (pq2.size() > pq1.size()) {
+        } else if (pq2.size() > pq1.size()) {
 
             pq1.offer(pq2.poll());
         }

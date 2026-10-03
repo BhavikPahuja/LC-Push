@@ -1,4 +1,5 @@
 class Solution {
+    
     public int longestValidParentheses(String s) {
         
         int left = 0, right = 0, ans = 0;
@@ -42,7 +43,7 @@ class Solution {
                 left = right = 0;
             }
         }
-        
+
         return ans;
     }
 }

@@ -3,27 +3,25 @@ class Solution {
     public int minAddToMakeValid(String s) {
 
         int ans = 0;
-        Stack<Integer> st = new Stack<>();
+        int cnt = 0;
 
         for (char ch : s.toCharArray()) {
 
             if (ch == '(') {
 
-                st.push(-1);
+                cnt++;
             } else {
 
-                if (st.isEmpty()) {
+                if (cnt == 0) {
 
                     ans++;
                 } else {
 
-                    st.pop();
+                    cnt--;
                 }
             }
         }
 
-        ans += st.size();
-
-        return ans;     
+        return ans + cnt;     
     }
 }

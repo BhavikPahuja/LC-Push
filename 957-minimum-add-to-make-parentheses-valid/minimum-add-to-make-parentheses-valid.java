@@ -2,8 +2,7 @@ class Solution {
 
     public int minAddToMakeValid(String s) {
 
-        int ans = 0;
-        int cnt = 0;
+        int ans = 0, cnt = 0;
 
         for (char ch : s.toCharArray()) {
 

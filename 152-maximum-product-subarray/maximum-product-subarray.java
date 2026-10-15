@@ -6,14 +6,14 @@ class Solution {
         int left = 1, right = 1;
         int ans = Integer.MIN_VALUE;
 
-        for(int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++){
 
-            if(left == 0){
+            if (left == 0){
 
                 left = 1;
             }
 
-            if(right == 0){
+            if (right == 0){
 
                 right = 1;
             }

@@ -2,26 +2,31 @@ class Solution {
 
     public int minGroups(int[][] iv) {
 
-        List<List<Integer>> ll = new ArrayList<>();
+        int n = iv.length;
 
-        for (int i[] : iv) {
+        int a[][] = new int[2 * n][2];
+    
+        for (int i = 0; i < n; i++) {
+     
+            a[2 * i][0] = iv[i][0];
+            a[2 * i][1] = 0;
 
-            ll.add(List.of(i[0], 0));
-            ll.add(List.of(i[1], 1));
+            a[2 * i + 1][0] = iv[i][1];
+            a[2 * i + 1][1] = 1;
         }
 
-        ll.sort((a, b) -> {
-        
-            int cmp = Integer.compare(a.get(0), b.get(0));
-            return cmp != 0 ? cmp : Integer.compare(a.get(1), b.get(1));
-        });
+        Arrays.sort(a, (x, y) -> {int cmp = Integer.compare(x[0], y[0]); return cmp != 0 ? cmp : Integer.compare(x[1], y[1]);});
 
-        int cnt = 0;
-        int ans = 0;
+        int cnt = 0, ans = 0;
 
-        for (List<Integer> i : ll) {
+        for (int i=0; i<2*n; i++) {
 
-            if (i.get(1) == 0) {
+            System.out.println(a[i][0] + " " + a[i][1]);
+        }
+
+        for (int i[] : a) {
+
+            if (i[1] == 0) {
 
                 cnt++;
             } else {
@@ -31,8 +36,6 @@ class Solution {
 
             ans = Math.max(ans, cnt);
         }
-
-        ans = Math.max(ans, cnt);
 
         return ans;
     }

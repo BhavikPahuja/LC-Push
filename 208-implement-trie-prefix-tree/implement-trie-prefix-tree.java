@@ -1,76 +1,95 @@
 class Node {
 
-    boolean isWord;
-    Node[] nei;
-    
-    public Node() {
+    Node links[] = new Node[26];
+    boolean flag;
 
-        isWord = false;
-        nei = new Node[26];
+    boolean containsKey(char ch) {
+
+        return links[ch - 'a'] != null;
+    }
+
+    void insert(char ch, Node node) {
+
+        links[ch - 'a'] = node;
+    }
+
+    Node get(char ch) {
+
+        return links[ch - 'a'];
+    }
+
+    void setEnd() {
+
+        flag = true;
+    }
+
+    boolean isEnd() {
+
+        return flag;
     }
 }
 
 class Trie {
 
     Node root;
-    
-    public Trie() {
 
+    public Trie() {
+        
         root = new Node();
     }
     
     public void insert(String word) {
-
+        
         Node node = root;
 
-        for (char ch : word.toCharArray()) {
+        for (int i=0; i<word.length(); i++) {
 
-            int idx = ch - 'a';
-            
-            if (node.nei[idx] == null) {
-            
-                node.nei[idx] = new Node();
+            char ch = word.charAt(i);
+
+            if (!node.containsKey(ch)) {
+
+                node.insert(ch, new Node());
             }
-            
-            node = node.nei[idx];
+
+            node = node.get(ch);
         }
 
-        node.isWord = true;
+        node.setEnd();
     }
     
     public boolean search(String word) {
-
+        
         Node node = root;
 
-        for (char ch : word.toCharArray()) {
+        for (int i=0; i<word.length(); i++) {
 
-            int idx = ch - 'a';
+            char ch = word.charAt(i);
 
-            if (node.nei[idx] == null) {
+            if (!node.containsKey(ch)) {
 
                 return false;
             }
 
-            node = node.nei[idx];
+            node = node.get(ch);
         }
 
-        return node.isWord;
+        return node.isEnd();
     }
     
     public boolean startsWith(String prefix) {
-
+        
         Node node = root;
 
-        for (char ch : prefix.toCharArray()) {
+        for (int i=0; i<prefix.length(); i++) {
 
-            int idx = ch - 'a';
+            char ch = prefix.charAt(i);
 
-            if (node.nei[idx] == null) {
+            if (!node.containsKey(ch)) {
 
                 return false;
             }
 
-            node = node.nei[idx];
+            node = node.get(ch);
         }
 
         return true;
